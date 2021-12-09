@@ -1,0 +1,45 @@
+<style>
+    .list-group-item.hover{
+        transition: all 0.25s ease;
+    }
+    .list-group-item.hover:hover {
+        background-color: rgba(0, 0, 255, 0.473) !important;
+        color: white !important;
+    }
+    .list-group-item.hover:hover > .list-group-item{
+        color: white !important;
+    }
+    .onlyThreeLine{
+        display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+</style>
+
+<div class="container-fluid bg-light p-2 p-md-5 border-bottom">
+        <ul class="container shadow list-group bg-white list-group p-3">
+        {{#if datas}}{{#each datas}}
+            <li class="list-group-item hover w-100 bg-transparant m-1 border rounded">
+                <a href="{{this.link}}" target="_blank" class="list-group-item list-group-item-action bg-transparent d-md-flex d-block align-items-center gap-3 py-3"
+                    aria-current="true">
+                    <img src="/images/{{this.img}}" alt="twbs" width="100"
+                        class="flex-shrink-0">
+                    <div class="d-flex gap-2 w-100 justify-content-between mt-3 mt-md-0">
+                        <div>
+                            <h6 class="mb-0">{{this.title}}</h6>
+                            <p class="mb-0 opacity-75 onlyThreeLine">{{this.description}}</p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">{{this.date}}</small>
+                    </div>
+                </a>
+            </li>
+        {{/each}}
+        {{else}}
+            <li class="list-group-item hover w-100 bg-transparant m-1 border rounded">
+                <h3 class="h3">{{reason}}</h3>
+            </li>
+        {{/if}}
+        </ul>
+</div>

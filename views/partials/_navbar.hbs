@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top p-2 transition-25">
+  <div class="container">
+    <div class="nav-brand">
+      <h4 class="text-primary">{{handler}}</h4>
+    </div>
+    <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="container bg-transparant p-0">
+        <header>
+          <div>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+              <a class="nav-link active" aria-current="page" href="{{#if (checkHandler handler)}}/admin{{else}}/{{/if}}">Home</a>
+              <div class="nav-link dropdown">
+                <button class="nav-link dropdown-toggle p-0 bg-transparent" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" /><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" /></svg>
+                </button>
+
+
+              {{#if (checkHandler handler)}}
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-macos mx-0 border-0 shadow"
+                  style="right: 0 !important; left: unset !important; width: fit-content;" 
+                  aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a href="/" class="list-group-item bg-transparent text-white list-group-item-action d-flex gap-3 py-3"
+                      aria-current="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" /><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" /></svg>
+
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">{{adminName}}</h6>
+                          <h6 class="mb-0 d-none d-md-block">{{adminEmail}}</h6>
+                        </div>
+                        <small class="opacity-50 text-nowrap">now</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/admin/addUser">Add User</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/admin/logout">Logout</a></li>
+                </ul>
+              {{else}}
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-macos mx-0 border-0 shadow"
+                  style="right: 0 !important; left: unset !important; width: fit-content;" 
+                  aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a href="/" class="list-group-item bg-transparent text-white list-group-item-action d-flex gap-3 py-3"
+                      aria-current="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" /><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" /></svg>
+
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">{{userName}}</h6>
+                          <h6 class="mb-0 d-none d-md-block">{{userEmail}}</h6>
+                        </div>
+                        <small class="opacity-50 text-nowrap">now</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/showInList">Show in List</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              {{/if}}
+              </div>
+            </nav>
+          </div>
+        </header>
+      </div>
+    </div>
+
+
+  </div>
+</nav>
