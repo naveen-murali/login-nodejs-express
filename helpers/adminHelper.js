@@ -1,8 +1,13 @@
 const fs = require('fs');
+const { resolve } = require('path');
 
 // Global funtions
 function getAllDatas() {
-    return JSON.parse(fs.readFileSync("config/dataBase.json"));
+    try {
+        return JSON.parse(fs.readFileSync("config/dataBase.json"));
+    } catch (err) {
+        throw "Could not complete the process.";
+    }
 }
 function setAllData(data) {
     try {
@@ -52,6 +57,23 @@ module.exports = {
                 reject({ reason: err.message });
            } 
         });
+    },
+
+    ADD_USER: (user) => {
+        return new Promise((resolve, reject) => {
+            try {
+                let data = getAllDatas();
+
+                delete user.confirmPassword;
+                data.users.push(user);
+                
+                setAllData(data);
+                resolve({ message: `${user.email} is created.` });
+            } catch (err) {
+                reject({ message: err.message });
+            }
+
+        })
     },
 
     DELETE_USER: (email) => {

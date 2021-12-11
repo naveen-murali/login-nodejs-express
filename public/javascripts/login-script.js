@@ -2,7 +2,7 @@
 $('#floatingInput').on("input", function (event) {
     $.ajax({
         type: "post",
-        url: "http://localhost:3000/varifyEmail",
+        url: "http://localhost:3000/validate/email",
         data: `email=${event.target.value}`,
         success: function (response) {
             console.log(response);
@@ -17,7 +17,7 @@ $('#floatingInput').on("input", function (event) {
 $('#floatingPassword').on("input", function (event) {
     $.ajax({
         type: "post",
-        url: "http://localhost:3000/varifyPassword",
+        url: "http://localhost:3000/validate/password",
         data: `password=${event.target.value}`,
         success: function (response) {
             console.log(response);

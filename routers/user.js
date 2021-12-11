@@ -70,42 +70,6 @@ router.post("/login", (req, res) => {
 });
 
 
-// @desc        For vaification of email.
-// @rout        POST /varifyEmail
-router.post(
-    "/varifyEmail",
-    [body('email').isEmail().withMessage("Invalid email")],
-    (req, res) => {
-        const errors = validationResult(req);
-        let resData;
-        if (errors.isEmpty())
-            resData = { status: true };
-        else
-            resData = { status: false, reason: errors.mapped().email.msg };
-
-        res.status(200).json(resData);
-    }
-);
-
-
-// @desc        For vaification of password.
-// @rout        POST /varifyPassword
-router.post(
-    "/varifyPassword",
-    [check('password').isLength({ min: 3 }).withMessage("min-length is 3")],
-    (req, res) => {
-        const errors = validationResult(req);
-        let resData;
-        if (errors.isEmpty())
-            resData = { status: true };
-        else
-            resData = { status: false, reason: errors.mapped().password.msg };
-
-        res.status(200).json(resData);
-    }
-);
-
-
 // @desc        For logout
 // @rout        POST /logout
 router.get("/logout", (req, res) => {

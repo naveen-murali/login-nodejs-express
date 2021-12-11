@@ -1,17 +1,46 @@
-<div class="container-fluid">
-    <form>
-        <div class="container">
-
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div class="container">
+    <form action="/admin/addUser" method="post" class="container p-md-5 p-2">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            
+            {{> _success}}
+            {{> _error}}
+            
+            <div class="col-12 col-md-6">
+                <h5 class="h4 text-primary mb-3">Add User</h5>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+            <div class="col-12 col-md-6">
+                <div class="mb-3">
+                    <label for="exampleInputName" class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputName"
+                        aria-describedby="emailHelp" oninput="checkName(event)">
+                    <div id="nameHelp" class="form-text text-danger"></div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="col-12 col-md-6">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="text" name="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" oninput="checkEmail(event)">
+                    <div id="emailHelp" class="form-text text-danger"></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="inputPassword" oninput="checkPassword(event)">
+                    <div id="passwordHelp" class="form-text text-danger"></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="mb-3">
+                    <label for="inputPasswordConfirm" class="form-label" oninput="">Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="form-control" id="inputPasswordConfirm" oninput="confirmPasswords(event)">
+                    <div id="confirmPasswordHelp" class="form-text text-danger"></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <button type="submit" class="btn btn-primary align-self-start">Submit</button>
+            </div>
         </div>
     </form>
 </div>

@@ -56,12 +56,15 @@ app.use(
     })
 )
 if (process.env.NODE_ENV === "production")
-    app.set('trust proxy', 1);
+    app.set('trust proxy', 1); //TODO: also set cookie true.
 
 
 // for transfering some common datas.
 app.use(flash());
 app.use((req, res, next) => {
+    // to remove showing the login page. so removing the caching.
+    res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+
     res.locals.errorMessage = req.flash("errorMessage");
     res.locals.successMessage = req.flash("successMessage");
 
@@ -80,6 +83,7 @@ app.use((req, res, next) => {
 // setting the routers
 app.use("/", require('./routers/user'));
 app.use("/admin", require('./routers/admin'));
+app.use("/validate", require("./routers/validate"))
 
 
 // catch and forwards to the error handler

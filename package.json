@@ -1,6 +1,6 @@
 {
   "name": "login",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "week 4 task from brocamp",
   "main": "server.js",
   "scripts": {

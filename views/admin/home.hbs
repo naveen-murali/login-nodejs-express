@@ -19,7 +19,7 @@
                         <td>{{this.name}}</td>
                         <td>{{this.email}}</td>
                         <td>
-                            <a href="/admin/deleteUser/{{this.email}}">Delete</a>
+                            <a href="/admin/deleteUser/{{this.email}}" onclick="deleteUser(event, this)">Delete</a>
                         </td>
                     </tr>
                 {{/each}}

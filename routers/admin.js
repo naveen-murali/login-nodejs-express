@@ -9,7 +9,7 @@ const adminHelper = require('../helpers/adminHelper');
 
 
 // @desc        For admin template
-// @rout        /admin
+// @rout        GET /admin
 router.get('/', isAdminHome, (req, res) => {
     adminHelper.GET_USERS()
         .then(clients => {
@@ -28,7 +28,7 @@ router.get('/', isAdminHome, (req, res) => {
 
 
 // @desc        For admin login template
-// @rout        /admin/login
+// @rout        GET /admin/login
 router.get('/login', isAdminIn, (req, res) => {
     res.render(
         'login',
@@ -38,7 +38,7 @@ router.get('/login', isAdminIn, (req, res) => {
 
 
 // @desc        For admin login template
-// @rout        /admin/login
+// @rout        POST /admin/login
 router.post('/login', (req, res) => {
     adminHelper.CHECK_ADMIN(req.body)
         .then((admin) => {
@@ -53,12 +53,12 @@ router.post('/login', (req, res) => {
 
 
 // @desc        For admin login template
-// @rout        /admin/deleteUser/:email
-router.get('/deleteUser/:email', isAdminHome, (req, res) => {
+// @rout        DELETE /admin/deleteUser/:email
+router.delete('/deleteUser/:email', isAdminHome, (req, res) => {
     adminHelper.DELETE_USER(req.params.email)
         .then(status => {
             req.flash("successMessage", status.message);
-            res.redirect('/admin');
+            res.status(204).send();
         })
         .catch(err => {
             req.flash("errorMessage", err.message);
@@ -67,15 +67,30 @@ router.get('/deleteUser/:email', isAdminHome, (req, res) => {
 })
 
 
-// @desc        For admin login template
-// @rout        /admin/addUser  
+// @desc        For admin add user template
+// @rout        GET /admin/addUser  
 router.get('/addUser', isAdminHome, (req, res) => {
     res.render('admin/addUser', { layout: "admin", title: "Add user | Admin", handler: "Admin" });
 })
 
 
+// @desc        For adding user
+// @rout        POST /admin/addUser  
+router.post('/addUser', isAdminHome, (req, res) => {
+    adminHelper.ADD_USER(req.body)
+        .then(resolve => {
+            req.flash("successMessage", resolve.message);
+            res.redirect("/admin/addUser");
+        })
+        .catch(reject => {
+            req.flash("errorMessage", reject.message);
+            res.redirect("/admin/addUser");
+        });
+})
+
+
 // @desc        For admin login template
-// @rout        /admin/logout
+// @rout        GET /admin/logout
 router.get('/logout', isAdminHome, (req, res) => {
     delete req.session.admin;
     res.redirect('/admin');
